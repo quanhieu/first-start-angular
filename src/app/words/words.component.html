@@ -1,0 +1,28 @@
+<div [hidden]="toggle">
+    <input placeholder="English" [(ngModel)]="newEn">
+    <input placeholder="Vietnamese" [(ngModel)]="newVn">
+</div>
+<br>
+<button (click)="toggle === true ? onToggle() : addWord()">
+    {{toggle === true ? 'Click me' : 'Add new word'}}
+</button>
+<br>
+<select [(ngModel)]="filterStatus">
+    <option value="VIEW_ALL">View all</option>
+    <option value="VIEW_MEMORIZED">View memorized</option>
+    <option value="VIEW_NOT_MEMORIZE">View not memorize</option>
+</select>
+<hr>
+<div *ngFor="let word of arrWords">
+    <div class="word"
+         *ngIf="showFollowLabel(word.memorized)">
+        <h4 [ngStyle]="{ color: word.memorized === true ? 'green' : 'red' }">
+            {{ word.en }}
+        </h4>
+           <p>{{ '- ' + word.vn }}</p>
+        <button (click)="removeWord(word.id)">Delete</button>
+        <button (click)="word.memorized = !word.memorized">
+          {{word.memorized ? 'Not memorize' : 'Memorized'}}
+        </button>
+    </div>
+</div>
