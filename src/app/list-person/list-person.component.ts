@@ -6,15 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-person.component.scss']
 })
 export class ListPersonComponent implements OnInit {
-  arrPeople = [
-    { name: 'Teo', age: 23 },
-    { name: 'Ti', age: 20 },
-    { name: 'Tun', age: 22 },
-  ];
+    arrPeople = [
+        { name: 'Teo', age: 23 },
+        { name: 'Ti', age: 20 },
+        { name: 'Tun', age: 22 },
+    ];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  removePersonByName(name: string) {
+      const index = this.arrPeople.findIndex(e => e.name === name);
+      this.arrPeople.splice(index, 1);
   }
 
 }
